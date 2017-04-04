@@ -1,6 +1,7 @@
 package entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -10,10 +11,10 @@ import javax.persistence.*;
 
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "WEBSITE")
+@NoArgsConstructor
 public class Website {
 
     @Id
@@ -21,16 +22,18 @@ public class Website {
             parameters = @Parameter(name = "property", value = "artist"))
     @GeneratedValue(generator = "one")
     @Column(name = "WEBSITE_ID")
-    @Access(AccessType.PROPERTY)
     private Long id;
+
+    public Website(Long id, String url) {
+        this.url = url;
+        this.id = id;
+    }
 
     @Column(name = "URL")
     private String url;
 
     @OneToOne(fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
-    @Access(AccessType.PROPERTY)
-
     Artist artist;
 
 }
