@@ -1,7 +1,8 @@
 package entity;
 
-import lombok.*;
-import lombok.experimental.Tolerate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,6 +23,12 @@ public class Artist implements Serializable {
         this.name = name;
         this.genre = genre;
         this.id = id;
+    }
+
+    public Artist(String name, String genre, Website website) {
+        this.name = name;
+        this.genre = genre;
+        this.website = website;
     }
 
     @Column(name = "NAME")

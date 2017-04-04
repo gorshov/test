@@ -1,11 +1,7 @@
 package MyMain;
 
-import entity.Artist;
-import entity.Website;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 import utill.HibernateUtil;
 
 
@@ -22,36 +18,6 @@ public class MyMain {
     public static void main(String[] args) {
 
         log.info("start hibernate test" + MyMain.class);
-        Artist artist = new Artist(null, "Bill", "Metall");
-
-        Website website = new Website(null, "mypage" + artist.getName(), artist);
-
-        try {
-            log.info("start saveOrUpdate");
-            Session session = HibernateUtil.getHibernateUtil().getSession();
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(artist);
-            session.flush();
-            transaction.commit();
-        } catch (HibernateException e) {
-            log.error("error" + MyMain.class + " " + e + MyMain.log);
-            transaction.rollback();
-        }
-        try {
-            log.info("start get");
-            Session session = HibernateUtil.getHibernateUtil().getSession();
-            transaction = session.beginTransaction();
-            Long id = 6l;
-            artist = (Artist) session.get(Artist.class, id);
-            log.info("artist name " + artist.getName());
-            System.out.println("artist name " + artist.getName());
-            session.flush();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-            log.error("error" + MyMain.class + " " + e + MyMain.log);
-            transaction.rollback();
-        }
 
     }
 }

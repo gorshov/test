@@ -1,7 +1,6 @@
 package entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -27,6 +26,11 @@ public class Website {
     public Website(Long id, String url) {
         this.url = url;
         this.id = id;
+    }
+
+    public Website(String url, Artist artist) {
+        this.url = url;
+        this.artist = artist;
     }
 
     @Column(name = "URL")
