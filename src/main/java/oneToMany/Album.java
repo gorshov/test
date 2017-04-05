@@ -18,13 +18,17 @@ import java.io.Serializable;
 public class Album implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY/*, generator = "seq_gen"*/)
+/*
+    @SequenceGenerator(name = "seq_gen", sequenceName = "group_seq")
+*/
     @Column(name = "ALBUM_ID", unique = true)
     private Long albumId;
 
-    @Column(name = "URL")
-    private String url;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @Column(name = "NAME")
+    private String nameAlbum;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "GROUP_ID")
     Group group;
 

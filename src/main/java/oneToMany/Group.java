@@ -2,6 +2,7 @@ package oneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,18 +10,18 @@ import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "STAR")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "MUSIC_GROUP")
+@EqualsAndHashCode(exclude = {"albumSet"})
 public class Group implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq_gen")
-    @SequenceGenerator(name = "seq_gen", sequenceName = "group_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY/*, generator = "seq_gen"*/)
+
     @Column(name = "GROUP_ID", unique = true)
-    private Long starId;
+    private Long groupId;
 
     @Column(name = "NAME")
     private String name;
@@ -28,7 +29,7 @@ public class Group implements Serializable {
     @Column(name = "GENRE")
 
     private String genre;
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private Set<Album> albumSet = new LinkedHashSet<Album>();
 
     public Group(String name, String genre) {

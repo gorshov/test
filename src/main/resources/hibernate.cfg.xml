@@ -9,13 +9,13 @@
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.pool_size">10</property>
+        <property name="hibernate.connection.isolation">4</property>
         <property name="show_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <!--Mapping-->
         <mapping class="oneToMany.Album"/>
         <mapping class="oneToMany.Group"/>
-        <mapping class="oneToOne.Artist"/>
-        <mapping class="oneToOne.Website"/>
+
     </session-factory>
 </hibernate-configuration>
 
