@@ -18,7 +18,7 @@ import java.util.Set;
 public class Group implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY/*, generator = "seq_gen"*/)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "GROUP_ID", unique = true)
     private Long groupId;
