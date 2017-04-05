@@ -1,5 +1,5 @@
-import entity.Artist;
-import entity.Website;
+import oneToOne.Artist;
+import oneToOne.Website;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

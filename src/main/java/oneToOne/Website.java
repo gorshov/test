@@ -1,4 +1,4 @@
-package entity;
+package oneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Data
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "WEBSITE")
 @NoArgsConstructor
-public class Website {
+public class Website implements Serializable {
 
     @Id
     @GenericGenerator(name = "one", strategy = "foreign",
