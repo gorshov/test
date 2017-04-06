@@ -2,12 +2,12 @@ import oneToMany.Album;
 import oneToMany.Group;
 import org.apache.log4j.Logger;
 import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Assert;
 import org.junit.Test;
 import utill.HibernateUtil;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Admin on 05.04.2017.
@@ -27,8 +27,14 @@ public class OneToManyTest {
             Group group = new Group("Metallica", "Metal");
             Album album = new Album(null, "Master of puppets", group);
             Album secondAlbum = new Album(null, "Metallica", group);
+            Album thirdAlbum = new Album(null, "And Justice for All", group);
+            Album fourthAlbum = new Album(null, "Death Magnetic", group);
+            Album fifthAlbum = new Album(null, "Kill 'Em All", group);
             group.getAlbumSet().add(album);
             group.getAlbumSet().add(secondAlbum);
+            group.getAlbumSet().add(thirdAlbum);
+            group.getAlbumSet().add(fourthAlbum);
+            group.getAlbumSet().add(fifthAlbum);
             album.setGroup(group);
             session.saveOrUpdate(group);
             transaction.commit();
@@ -81,6 +87,27 @@ public class OneToManyTest {
     }
 
     @Test
+    public void paginationTest() {
+        try {
+            log.info("pagination test : ");
+            Session session = OneToManyTest.getSession();
+            Criteria criteria = session.createCriteria(Album.class);
+            criteria.add(Restrictions.eq("GROUP_ID",1));
+            criteria.setFirstResult(0);
+            criteria.setMaxResults(4);
+            List result = criteria.list();
+            log.info("FIRST RESULT" + result);
+            criteria.setFirstResult(3);
+            criteria.setMaxResults(5);
+            List secondResult = criteria.list();
+            log.info(secondResult);
+        } catch (HibernateException e) {
+            log.error("error pagination " + e);
+            transaction.rollback();
+        }
+    }
+
+    @Test
     public void deleteTest() {
         try {
             log.info("start delete method ");
@@ -95,9 +122,11 @@ public class OneToManyTest {
         }
     }
 
+
     public static Session getSession() {
         Session session = HibernateUtil.getHibernateUtil().getSession();
         return session;
     }
+
 
 }
