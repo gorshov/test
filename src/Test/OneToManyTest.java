@@ -92,9 +92,8 @@ public class OneToManyTest {
             log.info("pagination test : ");
             Session session = OneToManyTest.getSession();
             Criteria criteria = session.createCriteria(Album.class);
-            criteria.add(Restrictions.eq("GROUP_ID",1));
             criteria.setFirstResult(0);
-            criteria.setMaxResults(4);
+            criteria.setMaxResults(3);
             List result = criteria.list();
             log.info("FIRST RESULT" + result);
             criteria.setFirstResult(3);
