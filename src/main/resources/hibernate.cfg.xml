@@ -16,6 +16,7 @@
         <mapping class="oneToMany.Album"/>
         <mapping class="oneToMany.Group"/>
 
+
     </session-factory>
 </hibernate-configuration>
 

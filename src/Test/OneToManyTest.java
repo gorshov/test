@@ -108,9 +108,9 @@ public class OneToManyTest {
 
     @Test
     public void deleteTest() {
+        Session session = OneToManyTest.getSession();
         try {
             log.info("start delete method ");
-            Session session = OneToManyTest.getSession();
             transaction = session.beginTransaction();
             Group group = (Group) session.load(Group.class, 1l);
             session.delete(group);
@@ -118,6 +118,23 @@ public class OneToManyTest {
         } catch (HibernateException e) {
             log.error("error in delete Test " + e);
             transaction.rollback();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void transactionTest() {
+        Session session = OneToManyTest.getSession();
+        try {
+            transaction = session.beginTransaction();
+            Group group = new Group("Test group", "folk");
+            log.info(group);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+        } finally {
+            session.close();
         }
     }
 

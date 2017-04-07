@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "MUSIC_GROUP")
 @EqualsAndHashCode(exclude = {"albumSet"})
+@ToString
 public class Group implements Serializable {
 
     @Id
