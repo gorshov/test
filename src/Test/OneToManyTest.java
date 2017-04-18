@@ -1,8 +1,11 @@
 import oneToMany.Album;
+import oneToMany.Dao;
 import oneToMany.Group;
 import org.apache.log4j.Logger;
-import org.hibernate.*;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.junit.Assert;
 import org.junit.Test;
 import utill.HibernateUtil;
@@ -17,6 +20,19 @@ public class OneToManyTest {
     public static Transaction transaction = null;
     private static Logger log = Logger.getLogger(OneToOneTest.class);
 
+    @Test
+    public void springAspectTest() {
+        Dao dao = new Dao();
+        Session session = OneToManyTest.getSession();
+        Group group = new Group("Group", "Ganre");
+        Album album = new Album("Album 1", group);
+        group.getAlbumSet().add(album);
+        Album album1 = new Album("Album 2", group);
+        group.getAlbumSet().add(album1);
+
+        List<Group> groups = dao.getAll(group);
+
+    }
 
     @Test
     public void selectOrUpdateTest() {

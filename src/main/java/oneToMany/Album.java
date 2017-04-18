@@ -1,12 +1,10 @@
 package oneToMany;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
 
 
 @AllArgsConstructor
@@ -14,6 +12,7 @@ import java.io.Serializable;
 @Table(name = "ALBUM")
 @NoArgsConstructor
 @ToString
+@Component
 public class Album implements Serializable {
 
     @Id
@@ -34,4 +33,8 @@ public class Album implements Serializable {
     @Setter
     Group group;
 
+    public Album(String nameAlbum, Group group) {
+        this.nameAlbum = nameAlbum;
+        this.group = group;
+    }
 }

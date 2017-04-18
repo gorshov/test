@@ -1,11 +1,12 @@
 package oneToMany;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -13,6 +14,7 @@ import java.util.Set;
 @Table(name = "MUSIC_GROUP")
 @EqualsAndHashCode(exclude = {"albumSet"})
 @ToString
+@Component
 public class Group implements Serializable {
 
     @Id
@@ -34,7 +36,7 @@ public class Group implements Serializable {
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     @Getter
     @Setter
-    private Set<Album> albumSet = new LinkedHashSet<Album>();
+    private List<Album> albumSet = new LinkedList<Album>();
 
     public Group(String name, String genre) {
         this.name = name;
