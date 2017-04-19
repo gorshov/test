@@ -18,7 +18,7 @@ public class BaseDao<T> implements DaoInterface<T> {
     private static Logger log = Logger.getLogger(BaseDao.class);
     private SessionFactory sessionFactory;
 
-    
+
 
     private Session createSession() {
         return sessionFactory.openSession();

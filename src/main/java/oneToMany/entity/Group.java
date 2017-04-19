@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "MUSIC_GROUP")
 @EqualsAndHashCode(exclude = {"albumSet"})
 @ToString
-@Component
 @Getter
 @Setter
 public class Group implements Serializable {
