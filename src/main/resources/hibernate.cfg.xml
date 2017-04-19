@@ -13,8 +13,8 @@
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <!--Mapping-->
-        <mapping class="oneToMany.Album"/>
-        <mapping class="oneToMany.Group"/>
+        <mapping class="oneToMany.entity.Album"/>
+        <mapping class="oneToMany.entity.Group"/>
 
 
     </session-factory>
