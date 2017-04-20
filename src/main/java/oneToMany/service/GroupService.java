@@ -1,9 +1,12 @@
 package oneToMany.service;
 
 import oneToMany.dao.BaseDao;
+import oneToMany.dao.DaoInterface;
 import org.apache.log4j.Logger;
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
@@ -11,11 +14,11 @@ import java.io.Serializable;
  * Created by Admin on 18.04.2017.
  */
 @Service
-
+@Transactional
 public class GroupService<T> implements ServiceInterface<T> {
     private Logger log = Logger.getLogger(GroupService.class);
-
-    private BaseDao<T> baseDao;
+    @Autowired
+    private DaoInterface<T> baseDao;
 
     public void saveOrUpdate(T t) {
         baseDao.saveOrUpdate(t);

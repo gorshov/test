@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Table(name = "ALBUM")
 @NoArgsConstructor
 @ToString
-@Component
 @Getter
 @Setter
 public class Album implements Serializable {

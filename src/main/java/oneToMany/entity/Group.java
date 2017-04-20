@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "MUSIC_GROUP")
 @EqualsAndHashCode(exclude = {"albumSet"})
-@ToString
+@ToString(exclude = {"albumSet"})
 @Getter
 @Setter
 public class Group implements Serializable {
@@ -36,5 +36,6 @@ public class Group implements Serializable {
         this.name = name;
         this.genre = genre;
     }
+
 
 }
