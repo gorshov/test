@@ -1,19 +1,20 @@
 package oneToMany.service;
 
-import oneToMany.dao.BaseDao;
 import oneToMany.dao.DaoInterface;
 import org.apache.log4j.Logger;
-import org.hibernate.service.ServiceRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Admin on 18.04.2017.
  */
 @Service
+@EnableTransactionManagement
 @Transactional
 public class GroupService<T> implements ServiceInterface<T> {
     private Logger log = Logger.getLogger(GroupService.class);
@@ -34,5 +35,9 @@ public class GroupService<T> implements ServiceInterface<T> {
 
     public void delete(T t) {
         baseDao.delete(t);
+    }
+
+    public List<T> getAll(T t) {
+        return baseDao.getAll(t);
     }
 }
