@@ -23,6 +23,7 @@ public class GroupController {
     public String getGroupList(ModelMap map) {
         List<Group> groupList = serviceInterface.getAll(Group.class);
         map.put("groupList", groupList);
+        /*map.addAttribute("groupList", groupList);*/
         return "groupList";
     }
 

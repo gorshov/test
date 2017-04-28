@@ -15,6 +15,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="oneToMany.dao"/>
+    <context:component-scan base-package="oneToMany.entity"/>
     <aop:aspectj-autoproxy/><!--proxy-target-class="true" expose-proxy="false"-->
     <!--Translate exception in spring-->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>

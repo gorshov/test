@@ -9,13 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-@NoArgsConstructor
 @Entity
 @Table(name = "MUSIC_GROUP")
 @EqualsAndHashCode(exclude = {"albumSet"})
 @ToString(exclude = {"albumSet"})
-@Getter
-@Setter
 public class Group implements Serializable {
 
     @Id
@@ -29,7 +26,7 @@ public class Group implements Serializable {
     @Column(name = "GENRE")
     private String genre;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Album> albumSet = new LinkedList<Album>();
 
     public Group(String name, String genre) {
@@ -37,5 +34,38 @@ public class Group implements Serializable {
         this.genre = genre;
     }
 
+    public Group() {
+    }
 
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public List<Album> getAlbumSet() {
+        return albumSet;
+    }
+
+    public void setAlbumSet(List<Album> albumSet) {
+        this.albumSet = albumSet;
+    }
 }

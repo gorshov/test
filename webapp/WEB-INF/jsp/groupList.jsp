@@ -11,17 +11,21 @@
 </head>
 <body>
 
-<div class="table-responsive" align="center">
-    <table class="table">
-        <thead>
+<div class="table" align="center">
+    <table class="table table-striped table-bordered">
+        <thead class="table" align="center">
         <th>Group</th>
         <th>Genre</th>
+        <th>Album</th>
         </thead>
         <tbody>
         <spring:forEach items="${groupList}" var="group">
             <tr>
-                <td>${group.name}</td>
-                <td>${group.genre}</td>
+                <td><spring:out value="${group.name}"/></td>
+                <td><spring:out value="${group.genre}"/></td>
+                <td><spring:forEach items="${group.albumSet}" var="album">
+                    <spring:out value="${album.nameAlbum}"/>
+                </spring:forEach></td>
             </tr>
         </spring:forEach>
         </tbody>
