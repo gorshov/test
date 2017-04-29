@@ -5,9 +5,11 @@
 <head>
     <title>Title</title>
     <spring:url value="/assests/css/bootstrap.css" var="bootstrapCss"/>
-    <spring:url value="/assests/css/happy.css" var="happyCss"/>
+    <%--<spring:url value="/assests/css/happy.css" var="happyCss"/>--%>
     <link href="${bootstrapCss}" rel="stylesheet"/>
+<%--
     <link href="${happyCss}" rel="stylesheet"/>
+--%>
 </head>
 <body>
 
